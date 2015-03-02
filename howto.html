@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<head lang="en">
+<title>How To Use ESRI JS API</title>
+<link rel="stylesheet" type="text/css" href="http://web.engr.oregonstate.edu/~carringl/howto/howto.css">
+</head>
+
+<body>
+<div id= "title">
+<h1>How To Use the ESRI ArcGIS Javascript API</h1>
+<h3>By: Lucas Carrington</h3>
+
+<table>
+<tr><td><a href="#title">Jump to Top</a></td></tr>
+<tr><td><a href="#introduction">Introduction</a></td></tr>
+<tr><td><a href="#setup">Setup</a></td></tr>
+<tr><td><a href="#stylesheets">A Note on Stylesheets</a></td></tr>
+<tr><td><a href="#gis">What is GIS?</a></td></tr>
+<tr><td><a href="#basemap">ESRI Basemap Functions</a></td></tr>
+<tr><td><a href="#map">ESRI Map Functions</a></td></tr>
+<tr><td><a href="#sandbox">Try it Out!</a></td></tr>
+</table>
+</div>
+
+<div id= "introduction">
+<h2>Introduction</h2>
+<br>
+<p>As this is for a web design class and not for any sort of actual professional use, I will be giving some background in this section as to what exactly ESRI ArcGIS is. GIS is a way to dynamically develop maps which allow for dynamic analysis. This is the professional version of google maps and is the de-facto software utilized by professionals that need to perform mapping anaysis around the world.</p>
+<p>ESRI maps are typically used normally used without use of the internet, but since the release of ArcMap 10.2, ESRI has been pushing the use of their online structure over the use of localized maps.</p>
+<p>This tutorial will go through how to utilize the ESRI Javascript API. Although there is excellent documentation for many of these interactions, this tutorial will specifically go into where ESRI is lacking, start to finish, actually making an online digital mapping program. This will also briefly cover the use of user defined tools within a web setting.</p>
+<p>So, why is this important? Firstly, ArcMap is a windows only application and the desktop version only runs on a 32 bit system. Obviously for highly processor intensive things (such as rendering 3d images, performing 3d analysis) this isn't an optimal solution. Utilizing ESRI's online system bypasses some of these restrictions and allows for the server to handle some of the more intensive processes faster than a single desktop.</p>
+<p>A simple clarification for any sort of grading is this. Yes, the API is well defined from a coding perspective, but it is not well defined for any sort of geoprocessing experience. Anyone who is a programmer is NEVER going to use this API, this is going to be mostly for geographers who are struggling through Javascript. Also even though every function is fairly decently defined, trying to make a map with just a set of function definitions is really difficult. This hopefully makes things a bit clearer.</p>
+</div>
+<div id="setup">
+<h2>Setting Up the API Within Javascript</h2>
+<br>
+<p>Building a map utilizing Javascript is very similar to utilizing the desktop version of ArcMap to build a mapping application. There are really two different things that must be added to a map in order for it to work. The first is the Basemap and the Map class.</p>
+<p>Unlike most of the API's that are around, there is no required key for this. The main utilization of this will be within settings like Portal (with an internal ArcGIS server) or within the ArcGIS online system (spending the appropriate money on an account of course). This will allow the user to create maps and use them in an online environment.</p>
+<p>ArcGIS utilizes a hosted style of utilizing its API (mostly for proprietary reasons), so for any time that you might want to utilize an ESRI map you will need to add the following into your header: </p>
+<br>
+
+<div class="code">
+<p><link rel="stylesheet" href="http://js.arcgis.com/3.12/esri/css/esri.css"></p>
+<p> script src="http://js.arcgis.com/3.12/" /script</p>
+</div>
+
+<p>Simple as that, no muss, no fuss.</p>
+</div>
+
+<div id="stylesheets">
+<h2>A Note on Stylesheets</h2>
+<br>
+<p>ESRI has a slew of predefined stylesheets for many of its built in functions like zoom, clip, point data, line data, etc. It is all pre built into the Esri.css that is included. It is important to have, but this can be overwritten by utilizing a user defined style sheet.</p>
+</div>
+
+<div id="gis">
+<h2>What is GIS?</h2>
+<br>
+<p>For this project, since you are not a GIS expert or probably not even a user, there are specific terminologies that need to be defined prior to explaining how this API works. First, GIS is a term that relates to all digital mapping software, this is the same as google maps, garmin, trimble, GRASS etc. ESRI's specific GIS is called ArcMap. </p>
+<p>Think of all GIS systems as a series of different maps or pictures layed on top of eachother in a very precise fashion. In classes that I give on this I like to use a specific metaphor for what GIS is. </p>
+<p>Imagine a large paper map of the US on a wall. This map is what we call a basemap. The basemap is literally the bottom layer of all the maps that you could use. It is what we base all of our other mapping decisions on. </p>
+<p>Next lets say you have a picture of yourself and your friends outside of Wrigley Field in Chicago. Intuitively we know where this is by looking at the picture. However no digital mapping software is going to know what this means. So we manually take that picture and we might take a push pin and put the picture in chicago. Now this picture (or layer) is now tied in a direct way to the basemap.</p>
+<p>Assume now that you do that for 100 different photos, now you can look at where those photos are, who they are with and what was inside and actually start to perform some analysis (maybe you have a friend that you realize you only have pictures of in front of baseball stadiums in the northwest).</p>
+<p>Obviously this is a very contrived example but the possibilities for GIS solutions to problems are only limited to the extent that a problem can be analyzed via some geographical means.</p>
+
+<iframe id="map1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2974.373447178732!2d-107.2253827!3d41.79871490000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x875d016f4aafb5cf%3A0x132e2e32bfa4d16e!2sE+Murray+St+%26+Harshman+St%2C+Rawlins%2C+WY+82301!5e0!3m2!1sen!2sus!4v1425057031787"></iframe>
+
+<p>This is an example of a GIS system</p>
+</div>
+
+<div id="basemap">
+<h2>Basemaps</h2>
+<br>
+<p>Documentation on Basemaps from ESRI can be found <a href="https://developers.arcgis.com/javascript/jsapi/esri.basemaps-amd.html">here</a></p>
+<p>If there is already documentation on this than why am I writing this section at all? First off, ESRI documentation is very helpful as long as you know exactly what you need to do and you know where exactly you need to look, otherwise there is a whole lot of piecemeal stuff that makes it very hard to understand how classes and functions actually interact with eachother.</p>
+<p>There are two obvious things of note here. According to ESRI (this was in their latest quarterly magazine and NOT on their website in any discernible place, the use of dojo (an alternate api not discussed in this project).</p>
+<p>The second thing that needs to be noted immediately here is that ESRI is very protective of their code. The require esri/basemap and esri/map (which we will discuss next), however there is no clear determination of what exactly is going on within these basemap and map properties. Just realize that you need them.</p>
+<p>The bright side is that we can determine what they actually do. The basemap function allows the user to specify what basemap they want to use. I am going to add in some specific GIS terminology here so stay with me. As you already know the basemap is the underlying portion for how all other layers are going to interact with eachother (its the large map of the US on the wall). In reality this basemap doesn't necessarily need to be a map, it could be anything at all. ArcGIS offers a whole bunch of preset basemaps that can be used seamlessly without building your own. These basemaps can be plain dark papers, they can be topographic maps, they can be aerial photos.</p>
+<p>For discussion purposes, the list of sample basemaps can be found <a href="http://developers.arcgis.com/javascript/samples/widget_basemap/">here.</a></p>
+<p>Now it is possible to add your own basemaps to any single gis map that you want, the code is fairly straightforward, all that is necessary is to add it into your own ArcGIS online account. Unfortunately this is slightly outside the scope of this how to as it requires the use of the Portal commands which will be added in a later update. As a short aside, I don't think there is any real good reason why we would want to utilize our own specific basemaps, they are all the industry standard topographic, aerial maps and other potential basemaps that might be utilized.</p>
+<p>*the reason for this is that portal commands require a full ground up setup specifically for ArcGIS utilizing the Apache2 server configurations and a how to explaining all of this to non professional (the whole point of this how- to) would be outside of the scope, so for now we will stick with the provided esri maps.</p>
+<p>As you integrate this within Javascript you will want to be familiar with the esriBasemap function, it is included with the initial API.</p>
+<p>The code looks like the following:</p>
+
+<div class="code">
+<p>function (esriBasemaps, Map){</p>
+<p>baseMapLayers: [{url: "http:(URL GOES HERE)"} ],</p>
+<p>thumbnailUrl: "http:(URL GOES HERE)",</p>
+<p>title: "(SOME TITLE GOES HERE)"</p>
+<p>};</p>
+<br><br>
+</div>
+
+<p>The esriBasemap function requires a few url links, both of which are either: </p><p> 1) provided in the ESRI documentation for basemaps </p><p> 2) found in the ESRI online layer after uploading </p> 
+
+<p>The example above is a simple example about how ESRI feels you should utilize the code within the broswer. Note that they want the user to create a name for the map itself with the esriBasemaps.(name), then the url is given for the baseMapLayers. Realize that this is where ArcGIS is going to point itself to, so this is why the layers of the map need to be located within either ArcGIS online or an ArcGIS server. The thumbnailURL is fairly straightforward as it will be located within the metadata of the ArcGIS map itself (right click on the layer and click properties).  Finally, a title is required for the function, and I have mostly seen this API use the name of the basemap as the title, but this is just an arbitrary string. </p>
+<p>With all of this together, basemaps can be created with any sort of raster data that you have availible, which is obviously quite convienent if you need to utilize the most updated data (such as satelite imagery) as long as you are overwriting the same place (and best practice is to archive the previous version of course). </p>
+</div>
+
+<div id="map">
+<h2>Map</h2>
+<br>
+<p>The second call that we really need to square away are the ESRI/map functions. The ESRI map function is fairly straightforward as it automatically builds all the necessary containers for the processes (such as containers to hold basemaps) and the necessary DOM to access them. Obviously for those of you who are more adept at building maps, this is much more akin to creating a single instance of ArcMap, the table of contents acts as the containers and the map functions themselves act as the DOM. Regardless, you need to require this within your Javascript or your map will not function at all.</p>
+
+<div class="code">
+<p>require(["esri/map"]</p>
+</div>
+
+<p>Continuing on, the map class is where the magic happens within ArcGIS online map, there are a few functions that we really want to be aware of as we move forward:<p>
+
+<div class="code">
+<p>var map = new Map,</p>
+</div>
+
+<p>This function call is very standard and is ESRI's recommendation for how maps should be created (utilizing a variable called map). This creates a new map within the actual HTML document that you are working with, clearly this is necessary.</p>
+
+<div class="code">
+<p>var baseMapLayer = new </p><p> esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer");</p><p> map.addLayer(baseMapLayer); </p>
+</div>
+
+<p>This second function call is how we add actual layers into the document itself (layers being those pictures that we pinned onto the basemap). Explaining the code we have we basically make a variable and call the  esri.layers.ArcGISTiledMapServiceLayer function. The http is where the layer is actually located (remember that if this is not on ArcGIS online it needs to be accessable to the outside internet or this will not work at all. Finally we call the map.addLayer (variable) which literally adds the layer (referenced from the http call) here.</p>
+<p>You might be thinking right now that this is a really roundabout way of doing it, why not just call map.addLayer(var) with the http? The reason why is because for whatever reason, the add layer function only works with TiledMapService, and if you have worked with ESRI for any length of time, oddities like this should be par for the course. </p>
+</div>
+
+<div id="sandbox">
+<h2>Sandbox- Tying it All Together</h2>
+<br>
+<p>The best feature about the ArcMap Javascript API is the sandbox. The sandbox is a live feature that ArcGIS uses in order to show how changes to the code affects certain portions of the live website. This is obviously a pretty nice feature because for every potential minor change, you can quickly see how things get changed.</p>
+<iframe id='sandbox2' src="http://developers.arcgis.com/javascript/sandbox/sandbox.html"></iframe>
+<p>Now the sandbox isn't built on something like ajax, where all the code is asyncronously run. Its built where the user actually has to click run in order for it to work, so be aware that changes made in the JS code will not automatically update.</p>
+</div>

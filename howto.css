@@ -1,0 +1,107 @@
+body {
+    color: #F2F2D0;
+    background: -webkit-linear-gradient(left top, #492F24, #694130);
+    background: -o-linear-gradient(bottom right, #492F24, #694130);
+    background: -moz-linear-gradient(bottom right, #492F24, #694130);
+    background: linear-gradient(to bottom right, #492F24, #694130);
+}
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: #F2F2D0;
+}
+
+#title {
+    text-align: center;
+    margin-left: auto;
+    margin-right: 5%;
+    color: #F2F2D0;
+    position: fixed;
+    background-color: #492F24;
+    border-style: ridge;
+    border-color: #F2F2D0;
+    border-width: 8px;
+    padding: 10px;
+    width: 95%;
+    height: 100px;
+}
+
+table {
+    text-align: left;
+    color: #F2F2D0;
+    position: fixed;
+    background-color: #492F24;
+    border-style: ridge;
+    border-color: #F2F2D0;
+    border-width: 8px;
+    padding: 10px;
+    width: 5%;
+    height: 100px;
+}
+
+.code {
+    background-color: #F2F2D0;
+    border-style: solid;
+    border-color: black;
+    border-width: 50%;
+    padding: 10px;
+    color: black;
+    line-height:10px;
+}
+
+#introduction {
+    padding-top: 150px;
+    padding-left: 200px;
+}
+   
+#setup {
+    padding-top: 150px;
+    padding-left: 200px;
+}
+
+#stylesheets {
+    padding-top: 150px;
+    padding-left: 200px;
+}
+
+#gis {
+    padding-top: 150px;
+    padding-left: 200px;
+}
+
+#basemap {
+    padding-top:150px;
+    padding-left: 200px;
+}
+
+#map {
+    padding-top: 150px;
+    padding-left: 200px;
+}
+
+#sandbox {
+    padding-top: 150px;
+    padding-left: 200px;
+}
+
+#sandbox2 {
+    border-style: ridge;
+    border-width: 5px;
+    border-color: #F2F2D0;
+    height: 500px;
+    width: 100%;
+    padding: 5px;
+}
+
+#map1 {
+    border-style: ridge;
+    border-width: 5px;
+    border-color: #F2F2D0;
+    height: 350px;
+    width: 75%;
+    padding: 5px;
+}
+ 
